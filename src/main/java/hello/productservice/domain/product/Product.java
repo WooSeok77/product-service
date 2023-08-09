@@ -15,4 +15,10 @@ public class Product {
 //    public Product() {
 //
 //    }
+
+    public Product(String productName, Integer price, Integer quantity) {
+        this.productName = productName;
+        this.price = price;
+        this.quantity = quantity;
+    }
 }
