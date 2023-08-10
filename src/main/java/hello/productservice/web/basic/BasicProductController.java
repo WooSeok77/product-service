@@ -52,4 +52,17 @@ public class BasicProductController {
         return "basic/product";
     }
 
+    @GetMapping("/{productId}/edit")
+    public String editForm(@PathVariable Long productId, Model model) {
+        Product product = productRepository.findById(productId);
+        model.addAttribute("product", product);
+        return "basic/editForm";
+    }
+
+    @PostMapping("/{productId}/edit")
+    public String edit(@PathVariable Long productId, @ModelAttribute Product product) {
+        productRepository.update(productId, product);
+        return "redirect:/basic/products/{productId}";
+    }
+
 }
