@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.annotation.PostConstruct;
 import java.util.List;
@@ -47,9 +48,11 @@ public class BasicProductController {
     }
 
     @PostMapping("/add")
-    public String addProduct(Product product) {
-        productRepository.save(product);
-        return "basic/product";
+    public String addProduct(Product product, RedirectAttributes redirectAttributes) {
+        Product savedproduct = productRepository.save(product); 
+        redirectAttributes.addAttribute("productId", savedproduct.getId()); 
+        redirectAttributes.addAttribute("status", true);
+        return "redirect:/basic/products/{productId}";
     }
 
     @GetMapping("/{productId}/edit")
