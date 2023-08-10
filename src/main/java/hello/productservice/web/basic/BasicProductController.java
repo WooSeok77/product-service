@@ -68,4 +68,10 @@ public class BasicProductController {
         return "redirect:/basic/products/{productId}";
     }
 
+    @GetMapping("/{productId}/delete")
+    public String delete(@PathVariable Long productId) {
+        productRepository.delete(productId);
+        return "redirect:/basic/products";
+    }
+
 }

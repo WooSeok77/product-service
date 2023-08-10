@@ -34,6 +34,10 @@ public class ProductRepository {
         findProduct.setQuantity(updateParam.getQuantity());
     }
 
+    public void delete(Long productId) {
+        store.remove(productId);
+    }
+
     public void clearStore() {
         store.clear();
     }
